@@ -16,10 +16,8 @@ class UsersController < ApplicationController
 
     user = User.create(user_params)
     if user.valid?
-
-      makepage = PagesController.new
-      makepage.on_signup(user)
-
+      pages_to_make = PagesController.new
+      pages_to_make.make_initial_pages_for(user)
       payload = {user_id: user.id}
       token = encode_token(payload)
       render json: {user: user, jwt: token}
