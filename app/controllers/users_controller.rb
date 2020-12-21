@@ -15,10 +15,14 @@ class UsersController < ApplicationController
  def create
 
     user = User.create(user_params)
+
     if user.valid?
+        user.pages.create(:name => "Dashboard", :page_type => "Dashboard", :page_kind => "Admin", :page_layout => "")
+        user.pages.create(:name => "Home", :page_type => "Index", :page_kind => "Page", :page_layout => "Sidebar")
+
         payload = {user_id: user.id}
         token = encode_token(payload)
-        render json: {user: user, jwt: token, page: page}
+        render json: {user: user, jwt: token}
     else
         render json: {errors: user.errors.full_messages}, status: :not_acceptable
     end

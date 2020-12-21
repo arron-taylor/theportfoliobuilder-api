@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_21_205246) do
+ActiveRecord::Schema.define(version: 2020_12_21_223410) do
+
+  create_table "components", force: :cascade do |t|
+    t.string "name"
+    t.string "component_type"
+    t.string "size"
+    t.string "page_id"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ownerships", force: :cascade do |t|
+    t.string "type"
+    t.integer "length"
+    t.integer "user_id"
+    t.integer "page_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "name"
+    t.string "user_id"
+    t.string "page_type"
+    t.string "page_kind"
+    t.string "page_layout"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
