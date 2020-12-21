@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_21_223410) do
+ActiveRecord::Schema.define(version: 2020_12_21_230931) do
 
   create_table "components", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 2020_12_21_223410) do
     t.string "size"
     t.string "page_id"
     t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "configurations", force: :cascade do |t|
+    t.integer "page_id"
+    t.integer "component_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -44,8 +51,10 @@ ActiveRecord::Schema.define(version: 2020_12_21_223410) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "uniquekey"
     t.string "password_digest"
+    t.string "access"
+    t.string "avatar"
+    t.string "theme"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
