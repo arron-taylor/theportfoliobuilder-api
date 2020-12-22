@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
   wrap_parameters :user, include: [:name, :email, :password]
   skip_before_action :require_login, only: [:index, :create]
   # GET /users
@@ -13,7 +12,6 @@ class UsersController < ApplicationController
   end
   # POST /users
  def create
-
     user = User.create(user_params)
     if user.valid?
       pages_to_make = PagesController.new

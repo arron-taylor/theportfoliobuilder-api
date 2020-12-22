@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
 
+	  wrap_parameters :page, include: [:name, :page_layout, :page_kind, :page_type]
+  # skip_before_action :require_login, only: [:index, :create]
+
 	def make_initial_pages_for(user)
 			components_to_add = ComponentsController.new
 			dashboard = Page.create(:name => "Dashboard", :page_type => "Dashboard", :page_kind => "Admin", :page_layout => "Admin")
@@ -10,4 +13,16 @@ class PagesController < ApplicationController
       user.pages << homepage
 	end
 
+	def create
+		page = @user.pages.create(page_params)
+    if page.valid?
+      render json: {page: page}
+    else
+        render json: {errors: user.errors.full_messages}, status: :not_acceptable
+    end
+	end
+
+	def page_params
+      params.require(:page).permit(:name, :page_layout, :page_kind, :page_type)
+    end
 end
