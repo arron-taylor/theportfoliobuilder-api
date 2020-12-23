@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  wrap_parameters :user, include: [:name, :email, :password]
+  wrap_parameters :user, include: [:name, :email, :password, :user_type, :avatarname]
   skip_before_action :require_login, only: [:index, :create]
   # GET /users
   def index
@@ -33,6 +33,6 @@ class UsersController < ApplicationController
   end
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :user_type, :avatarname)
     end
 end
