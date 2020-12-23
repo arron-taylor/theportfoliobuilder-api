@@ -1,7 +1,12 @@
 class PagesController < ApplicationController
 
-	  wrap_parameters :page, include: [:name, :page_layout, :page_kind, :page_type]
-  # skip_before_action :require_login, only: [:index, :create]
+	 wrap_parameters :page, include: [:name, :page_layout, :page_kind, :page_type]
+   skip_before_action :require_login, only: [:all]
+
+  def all
+    @pages = Page.all
+    render json: @pages
+  end
 
 	def make_initial_pages_for(user)
 			components_to_add = ComponentsController.new

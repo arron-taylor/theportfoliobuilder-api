@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_12_21_230931) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "user_type"
     t.string "access"
     t.string "avatar"
     t.string "theme"
