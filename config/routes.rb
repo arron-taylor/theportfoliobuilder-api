@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   post '/makepage' => 'pages#create'
   get '/pages' => 'pages#all'
+
+  post '/deletepage' => 'pages#delete'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

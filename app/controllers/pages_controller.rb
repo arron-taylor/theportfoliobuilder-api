@@ -26,8 +26,11 @@ class PagesController < ApplicationController
         render json: {errors: user.errors.full_messages}, status: :not_acceptable
     end
 	end
-
+  def delete 
+    @page = Page.find_by(id: params[:id])
+    @page.destroy
+  end
 	def page_params
-      params.require(:page).permit(:name, :page_layout, :page_kind, :page_type)
+      params.require(:page).permit(:name, :page_layout, :page_kind, :page_type, :id)
     end
 end
