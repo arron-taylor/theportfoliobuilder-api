@@ -30,6 +30,13 @@ class PagesController < ApplicationController
     @page = Page.find_by(id: params[:id])
     @page.destroy
   end
+  def edit 
+
+    @page = Page.find_by(id: params[:id])
+    @page.page_layout = params[:page_layout]
+    @page.save
+
+  end
 	def page_params
       params.require(:page).permit(:name, :page_layout, :page_kind, :page_type, :id)
     end
