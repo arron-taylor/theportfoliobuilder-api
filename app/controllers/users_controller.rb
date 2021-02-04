@@ -23,6 +23,17 @@ class UsersController < ApplicationController
         render json: {errors: user.errors.full_messages}, status: :not_acceptable
     end
   end
+  def edit 
+
+    @user = User.find_by(id: params[:id])
+    @user.username = params[:username]
+    @user.usertype = params[:usertype]
+    @user.name = params[:name]
+    @user.email = params[:email]
+    @user.avatar = params[:avatar]
+    @user.save
+
+  end
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
