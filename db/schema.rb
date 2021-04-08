@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_12_21_230931) do
     t.string "password_digest"
     t.string "user_type"
     t.string "access"
-    t.string "avatarname"
+    t.string "avatar"
     t.string "theme"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
